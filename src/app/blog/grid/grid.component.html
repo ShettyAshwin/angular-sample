@@ -1,0 +1,20 @@
+<div class="row">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Picture</th>
+            <th scope="col">Description</th>
+            <th scope="col">Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let blog of blogs">
+              <td><a [routerLink]="['/blog/editor/', blog.id]">{{blog.title}}</a></td>
+              <td><img src='{{blog.picture}}'/></td>
+              <td>{{blog.description}}</td>
+              <td>{{blog.createdAt}}</td>
+          </tr>
+        </tbody>
+        </table>
+</div>

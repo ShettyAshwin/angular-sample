@@ -1,0 +1,18 @@
+<form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title" [(ngModel)]="detail.title" id="title" placeholder="Blog Title">
+    </div>
+    <div class="form-group">
+      <label for="imageUrl">Picture</label>
+      <input type="text" class="form-control" name="imageUrl" [(ngModel)]="detail.picture" id="imageUrl" placeholder="Image URL">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea row="4" class="form-control" name="description" [(ngModel)]="detail.description" id="description" maxlength="500" placeholder="Blog Description"></textarea>
+    </div>
+    <div class="col-12">
+        <button (click)="onSave()" [disabled]="isLoading" class="btn btn-primary float-right">Save</button>
+        <button (click)="onDelete()" [disabled]="isLoading" class="btn btn-danger float-right mr-2" *ngIf="id">Delete</button>
+      </div>
+  </form>
