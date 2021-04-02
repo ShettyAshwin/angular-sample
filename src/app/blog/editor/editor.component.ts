@@ -12,11 +12,15 @@ import { BlogService } from '../service/blog.service';
 })
 export class EditorComponent implements OnInit {
 
-  id: number = 0;
+  id = 0;
   detail: Blog = {} as Blog;
-  isLoading: boolean = false;
+  isLoading = false;
 
-  constructor(private service: BlogService, private actRoute: ActivatedRoute, private router: Router, private modal: ModalService, private toastr: ToastrService) {
+  constructor(private service: BlogService,
+              private actRoute: ActivatedRoute,
+              private router: Router,
+              private modal: ModalService,
+              private toastr: ToastrService) {
     this.id = this.actRoute.snapshot.params.id;
   }
 
@@ -31,7 +35,7 @@ export class EditorComponent implements OnInit {
     }
   }
 
-  onSave(){
+  onSave(): void{
     this.isLoading = true;
     if (this.id){
       this.service.update(this.detail).subscribe(() => {
@@ -52,7 +56,7 @@ export class EditorComponent implements OnInit {
     }
   }
 
-  onDelete(){
+  onDelete(): void{
     this.isLoading = true;
     this.modal.confirm('Are you sure, this cant be reverted').then((resp) => {
       if (resp){

@@ -11,7 +11,7 @@ describe('BlogService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({ imports : [HttpClientModule]});
     service = TestBed.inject(BlogService);
-    httpClient = TestBed.get(HttpClient);
+    httpClient = TestBed.inject(HttpClient);
   });
 
   it('should be created', () => {

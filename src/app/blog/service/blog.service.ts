@@ -29,7 +29,7 @@ export class BlogService {
     return this.http.put<Blog>(environment.apiServer + '/devTest/api.php?id=' + detail.id, detail);
   }
 
-  delete(id: number){
+  delete(id: number): Observable<Blog>{
     return this.http.delete<Blog>(environment.apiServer + '/devTest/api.php?id=' + id);
   }
 }

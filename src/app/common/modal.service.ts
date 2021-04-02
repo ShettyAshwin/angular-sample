@@ -10,9 +10,9 @@ export class ModalService {
 
   constructor(private modalService: NgbModal) { }
 
-  confirm(label: string){
+  confirm(label: string): Promise<boolean>{
     const modalRef = this.modalService.open(ModalComponent, {size: 'sm', centered: true});
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       modalRef.componentInstance.msglabel = label;
       modalRef.result.then((resp) => {
         resolve(resp);

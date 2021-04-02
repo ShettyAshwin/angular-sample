@@ -31,9 +31,9 @@ describe('EditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EditorComponent);
     component = fixture.componentInstance;
-    service = TestBed.get(BlogService);
-    router = TestBed.get(Router);
-    modal = TestBed.get(ModalService);
+    service = TestBed.inject(BlogService);
+    router = TestBed.inject(Router);
+    modal = TestBed.inject(ModalService);
     fixture.detectChanges();
   });
 

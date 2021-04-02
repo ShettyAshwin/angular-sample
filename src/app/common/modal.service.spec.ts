@@ -12,8 +12,8 @@ describe('ModalService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({ imports : [NgbModule], providers : [ ModalComponent, NgbActiveModal]});
     service = TestBed.inject(ModalService);
-    modal = TestBed.get(NgbModal);
-    modalCom = TestBed.get(ModalComponent);
+    modal = TestBed.inject(NgbModal);
+    modalCom = TestBed.inject(ModalComponent);
   });
 
   it('should be created', () => {

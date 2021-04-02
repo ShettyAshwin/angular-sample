@@ -29,8 +29,8 @@ describe('GridComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GridComponent);
     component = fixture.componentInstance;
-    service = TestBed.get(BlogService);
-    modal = TestBed.get(ModalService);
+    service = TestBed.inject(BlogService);
+    modal = TestBed.inject(ModalService);
     fixture.detectChanges();
   });
 

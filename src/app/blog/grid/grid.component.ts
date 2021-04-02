@@ -5,7 +5,7 @@ import { Blog } from '../class/blog';
 import { BlogService } from '../service/blog.service';
 
 @Component({
-  selector: 'grid',
+  selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss']
 })
@@ -20,7 +20,7 @@ export class GridComponent implements OnInit {
     });
   }
 
-  onDelete(id: number){
+  onDelete(id: number): void{
     this.modal.confirm('Are you sure, this cant be reverted').then((resp) => {
       if (resp){
         this.service.delete(id).subscribe(() => {

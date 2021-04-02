@@ -20,7 +20,7 @@ describe('ModalComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ModalComponent);
     component = fixture.componentInstance;
-    modal = TestBed.get(NgbActiveModal);
+    modal = TestBed.inject(NgbActiveModal);
     fixture.detectChanges();
   });
 

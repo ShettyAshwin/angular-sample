@@ -8,7 +8,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent implements OnInit {
 
-  @Input() msglabel: string = 'Are you sure';
+  @Input() msglabel = 'Are you sure';
 
   constructor(private modal: NgbActiveModal) { }
 
@@ -16,11 +16,11 @@ export class ModalComponent implements OnInit {
 
   }
 
-  onCancel(){
+  onCancel(): void{
     this.modal.close(false);
   }
 
-  onConfirm(){
+  onConfirm(): void{
     this.modal.close(true);
   }
 
