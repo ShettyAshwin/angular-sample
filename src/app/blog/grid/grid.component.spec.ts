@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { blog } from '../class/blog';
+import { Blog } from '../class/blog';
 import { BlogService } from '../service/blog.service';
 import {  of } from 'rxjs';
 
@@ -15,8 +15,8 @@ import { ToastrModule } from 'ngx-toastr';
 describe('GridComponent', () => {
   let component: GridComponent;
   let fixture: ComponentFixture<GridComponent>;
-  let service : BlogService
-  let modal : ModalService
+  let service: BlogService;
+  let modal: ModalService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -29,8 +29,8 @@ describe('GridComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GridComponent);
     component = fixture.componentInstance;
-    service = TestBed.get(BlogService)
-    modal = TestBed.get(ModalService)
+    service = TestBed.get(BlogService);
+    modal = TestBed.get(ModalService);
     fixture.detectChanges();
   });
 
@@ -38,32 +38,32 @@ describe('GridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch data on page load', ()=>{
-    spyOn(service,'list').and.returnValue(of([<blog>{}, <blog>{}]))
-    component.ngOnInit()
-    expect(service.list).toHaveBeenCalled()
-    expect(component.blogs.length).toBe(2)
-  })
+  it('should fetch data on page load', () => {
+    spyOn(service, 'list').and.returnValue(of([{} as Blog, {} as Blog]));
+    component.ngOnInit();
+    expect(service.list).toHaveBeenCalled();
+    expect(component.blogs.length).toBe(2);
+  });
 
-  it('should delete record after confirmation (false)', ()=>{
-    const detail = <blog>{}
-    detail.id = 100
-    detail.title = "Hello"
-    spyOn(modal, 'confirm').and.returnValue(Promise.resolve(false))
-    component.ngOnInit()
-    component.onDelete(100)
-    expect(modal.confirm).toHaveBeenCalled()
-  })
+  it('should delete record after confirmation (false)', () => {
+    const detail = {} as Blog;
+    detail.id = 100;
+    detail.title = 'Hello';
+    spyOn(modal, 'confirm').and.returnValue(Promise.resolve(false));
+    component.ngOnInit();
+    component.onDelete(100);
+    expect(modal.confirm).toHaveBeenCalled();
+  });
 
-    it('should delete record after confirmation (true)', ()=>{
-    const detail = <blog>{}
-    detail.id = 100
-    detail.title = "Hello"
-    spyOn(service, 'delete').and.returnValue(of(detail))
-    spyOn(modal, 'confirm').and.returnValue(Promise.resolve(true))
-    component.ngOnInit()
-    
-    component.onDelete(100)
-    expect(modal.confirm).toHaveBeenCalled() 
-  })
+  it('should delete record after confirmation (true)', () => {
+    const detail = {} as Blog;
+    detail.id = 100;
+    detail.title = 'Hello';
+    spyOn(service, 'delete').and.returnValue(of(detail));
+    spyOn(modal, 'confirm').and.returnValue(Promise.resolve(true));
+    component.ngOnInit();
+
+    component.onDelete(100);
+    expect(modal.confirm).toHaveBeenCalled();
+  });
 });

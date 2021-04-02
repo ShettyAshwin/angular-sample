@@ -5,10 +5,10 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ServiceInterceptor implements HttpInterceptor {
-  
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userToken = 'ADkOcUNSRsOAvpuAcpzgsgVxvTYAEHxKiZkjWAUz';
-    const modifiedReq = req.clone({ 
+    const modifiedReq = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${userToken}`),
     });
     return next.handle(modifiedReq);

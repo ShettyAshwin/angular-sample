@@ -1,35 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { blog } from '../class/blog'
+import { Blog } from '../class/blog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
   }
 
-  list(): Observable<blog[]> {
-    return this.http.get<blog[]>(environment.apiServer + "/devTest/api.php");
+  list(): Observable<Blog[]> {
+    return this.http.get<Blog[]>(environment.apiServer + '/devTest/api.php');
   }
 
-  add(detail: blog): Observable<blog> {
-    return this.http.post<blog>(environment.apiServer + "/devTest/api.php", detail)
+  add(detail: Blog): Observable<Blog> {
+    return this.http.post<Blog>(environment.apiServer + '/devTest/api.php', detail);
   }
 
-  detail(id:Number): Observable<blog>{
-    return this.http.get<blog>(environment.apiServer + "/devTest/api.php?id=" + id);
+  detail(id: number): Observable<Blog>{
+    return this.http.get<Blog>(environment.apiServer + '/devTest/api.php?id=' + id);
   }
 
-  update(detail: blog): Observable<blog> {
-    return this.http.put<blog>(environment.apiServer + "/devTest/api.php?id=" + detail.id, detail)
+  update(detail: Blog): Observable<Blog> {
+    return this.http.put<Blog>(environment.apiServer + '/devTest/api.php?id=' + detail.id, detail);
   }
 
-  delete(id:Number){
-    return this.http.delete<blog>(environment.apiServer + "/devTest/api.php?id=" + id)
+  delete(id: number){
+    return this.http.delete<Blog>(environment.apiServer + '/devTest/api.php?id=' + id);
   }
 }

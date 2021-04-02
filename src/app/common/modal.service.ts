@@ -10,14 +10,14 @@ export class ModalService {
 
   constructor(private modalService: NgbModal) { }
 
-  confirm(label:string){
-    const modalRef = this.modalService.open(ModalComponent, {size: 'sm', centered: true})
-    return new Promise(function(resolve, reject) {      
-      modalRef.componentInstance.msglabel = label
-      modalRef.result.then((resp)=>{
-        resolve(resp)
-      })
-    })
-   
+  confirm(label: string){
+    const modalRef = this.modalService.open(ModalComponent, {size: 'sm', centered: true});
+    return new Promise(function(resolve, reject) {
+      modalRef.componentInstance.msglabel = label;
+      modalRef.result.then((resp) => {
+        resolve(resp);
+      });
+    });
+
   }
 }

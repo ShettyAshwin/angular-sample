@@ -1,19 +1,32 @@
-<form>
+<form #userForm="ngForm">
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" class="form-control" name="title" [(ngModel)]="detail.title" id="title" placeholder="Blog Title">
+    <input type="text" class="form-control" maxlength="70"  minlength="3" name="title" [(ngModel)]="detail.title" #title="ngModel" placeholder="Blog Title" [ngClass]="{ 'is-invalid': userForm.submitted && title.invalid }" required>
+    <div class="invalid-feedback" *ngIf="title.invalid">
+      <div *ngIf="title.errors && title.errors.required">Title is required</div>
+      <div *ngIf="title.errors && title.errors.minlength">Minimum length of 3 is required</div>
+      <div *ngIf="title.errors && title.errors.maxlength">Max length of 70 is required</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <textarea row="4" class="form-control" name="description" [(ngModel)]="detail.description" id="description"
-      maxlength="500" placeholder="Blog Description"></textarea>
+    <textarea row="4" class="form-control" name="description" [(ngModel)]="detail.description" #description="ngModel"  minlength="3"
+      maxlength="500" placeholder="Blog Description" required></textarea>
+      <div class="invalid-feedback" *ngIf="description.invalid">
+        <p *ngIf="description.errors && description.errors.required">Description is required</p>
+        <p *ngIf="description.errors && description.errors.minlength">Minimum length of 3 is required</p>
+        <p *ngIf="description.errors && description.errors.maxlength">Max length of 500 is required</p>
+      </div>
   </div>
   <div class="form-group">
     <div class="row">
     <div class="col-sm-5">
       <label for="imageUrl">Picture</label>
-      <input type="text" class="form-control" name="imageUrl" [(ngModel)]="detail.picture" id="imageUrl"
-        placeholder="Image URL">
+      <input type="text" class="form-control" name="imageUrl" [(ngModel)]="detail.picture" #imageUrl="ngModel"
+        placeholder="Image URL" required>
+        <div class="invalid-feedback" *ngIf="imageUrl.invalid">
+          <p *ngIf="imageUrl.errors && imageUrl.errors.required">Picture is required</p>
+        </div>
     </div>
     <div class="col-sm-6">
       <img src='{{detail.picture}}'/>
@@ -22,7 +35,7 @@
   </div>
  
   <div class="col-12">
-    <button (click)="onSave()" [disabled]="isLoading" class="btn btn-primary float-right">Save</button>    
+    <button (click)="userForm.form.valid &&  onSave()" [disabled]="isLoading" class="btn btn-primary float-right">Save</button>    
     <button (click)="onDelete()" [disabled]="isLoading" class="btn btn-danger float-right mr-2"
       *ngIf="id">Delete</button>
       <a  class="btn btn-danger float-right mr-2" [routerLink]="['/blog/grid']">Cancel</a>

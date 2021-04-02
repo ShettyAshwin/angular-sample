@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from 'src/app/common/modal.service';
-import { blog } from '../class/blog';
+import { Blog } from '../class/blog';
 import { BlogService } from '../service/blog.service';
 
 @Component({
@@ -11,27 +11,27 @@ import { BlogService } from '../service/blog.service';
 })
 export class GridComponent implements OnInit {
 
-  blogs : Array<blog> = <blog[]>[]
-  constructor(private service: BlogService, private modal : ModalService, private toastr: ToastrService) { }
+  blogs: Array<Blog> = [] as Blog[];
+  constructor(private service: BlogService, private modal: ModalService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.service.list().subscribe((resp)=>{
-      this.blogs = resp
-    })
+    this.service.list().subscribe((resp) => {
+      this.blogs = resp;
+    });
   }
 
-  onDelete(id: Number){
-    this.modal.confirm("Are you sure, this cant be reverted").then((resp)=>{
-      if(resp){
-        this.service.delete(id).subscribe((resp)=>{
-          this.toastr.success("Record Deleted")
-          this.ngOnInit()
-        }, (e)=>{
-          console.log(e)
-          this.toastr.warning("Oops something went wrong")
-        })
+  onDelete(id: number){
+    this.modal.confirm('Are you sure, this cant be reverted').then((resp) => {
+      if (resp){
+        this.service.delete(id).subscribe(() => {
+          this.toastr.success('Record Deleted');
+          this.ngOnInit();
+        }, (e) => {
+          console.log(e);
+          this.toastr.warning('Oops something went wrong');
+        });
       }
-    })    
+    });
   }
 
 }

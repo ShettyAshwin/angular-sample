@@ -1,7 +1,7 @@
-export interface blog {
-    id : Number
-    title : String,
-    picture : String,
-    description: String,
-    createdAt : Date
+export interface Blog {
+    id: number;
+    title: string;
+    picture: string;
+    description: string;
+    createdAt: Date;
 }
