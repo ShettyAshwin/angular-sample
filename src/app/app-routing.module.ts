@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'blog/grid', component: GridComponent },
   { path: 'blog/editor/:id', component: EditorComponent },
   { path: 'blog/editor', component: EditorComponent },
-  { path: '/', component: GridComponent },
+  { path: '', component: GridComponent },
 ];
 
 @NgModule({
